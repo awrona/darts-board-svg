@@ -1,0 +1,15 @@
+{
+  "name": "darts-board-svg",
+  "version": "1.0.0",
+  "description": "Darts Board",
+  "main": "dist/dartsBoard.svg",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Agnieszka Wrona",
+  "license": "MIT",
+  "devDependencies": {
+    "jade": "^1.11.0",
+    "node-sass": "^3.4.2"
+  }
+}
