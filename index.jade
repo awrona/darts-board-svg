@@ -6,3 +6,35 @@ html(lang="en")
   body
     include ./dist/dartsBoard.svg
 
+    script.
+
+      function getNumber(id) {
+        return parseInt(id.match(/(\d)+/g), 10) || 0;
+      }
+
+      function getMultiplier(id) {
+        return /(single)|(double)|(triple)/g.exec(id).findIndex(function(el, idx) { return idx && el; }) || 0;
+      }
+
+      function getPoints(id) {
+        return getNumber(id) * getMultiplier(id);
+      }
+
+      function getFieldSide(id) {
+        var isValid = getMultiplier(id) === 1;
+        var resultArray;
+
+        if(!isValid) {
+          return '';
+        }
+
+        resultArray = /(inner)|(outer)/g.exec(id);
+
+        return (['', 'inner', 'outer'][resultArray && resultArray.findIndex(function(el, idx) { return idx && el; }) || 0]) || '';
+      }
+
+      function toString(id) {
+        return getNumber(id) + ' ' + getFieldSide(id) + ' X ' + getMultiplier(id) + '  =  ' + getPoints(id);
+      }
+
+      document.querySelector('#dartsBoard').addEventListener('click', function(evt) { alert(toString(evt.target.id)) })
